@@ -25,7 +25,6 @@
 }
 
 * { box-sizing: border-box; }
-
 html, body { min-height: 100%; }
 
 body {
@@ -56,7 +55,6 @@ button:focus-visible {
   box-shadow: 5px 5px 0 #aaa99f;
 }
 
-/* 顶部：纯色蓝，不使用渐变 */
 .titlebar {
   flex-shrink: 0;
   height: 32px;
@@ -95,12 +93,12 @@ button:focus-visible {
   font-size: 12px;
 }
 
-/* 主体框架 */
+/* 主体：右侧桌宠栏加宽 */
 .shell {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 116px;
+  grid-template-columns: minmax(0, 1fr) 190px;
 }
 
 .main {
@@ -111,7 +109,6 @@ button:focus-visible {
   border-right: 3px solid #656b66;
 }
 
-/* 标题图片区：不显示 Pics */
 .brand {
   height: 132px;
   flex-shrink: 0;
@@ -139,7 +136,6 @@ button:focus-visible {
   image-rendering: pixelated;
 }
 
-/* 页面标签 */
 .tabs {
   flex-shrink: 0;
   min-height: 42px;
@@ -177,7 +173,6 @@ button:focus-visible {
   font-weight: bold;
 }
 
-/* 中央纯色内容区 */
 .content {
   flex: 1;
   min-height: 0;
@@ -202,6 +197,7 @@ button:focus-visible {
 
 .page h3 { font-size: 14px; }
 .page p { line-height: 2; }
+
 .page img {
   display: block;
   max-width: 100%;
@@ -271,22 +267,14 @@ button:focus-visible {
 .entry p { margin-bottom: 0; }
 .entry-date { color: #858981; font-size: 11px; }
 
-/* 右侧桌宠 */
+/* 右侧桌宠栏：已删除 MY LITTLE ROOM */
 .sidebar {
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 7px;
+  padding: 16px 12px;
   background: #eae9e1;
-}
-
-.side-label {
-  writing-mode: vertical-rl;
-  margin-top: 8px;
-  color: #898b83;
-  font-size: 10px;
-  letter-spacing: .15em;
 }
 
 .pet-area {
@@ -302,10 +290,10 @@ button:focus-visible {
 .speech {
   width: 100%;
   position: relative;
-  padding: 10px 5px;
+  padding: 12px 9px;
   text-align: center;
-  line-height: 1.65;
-  font-size: 10px;
+  line-height: 1.75;
+  font-size: 11px;
   overflow-wrap: anywhere;
   background: var(--white);
   border: 2px solid #555d58;
@@ -316,7 +304,7 @@ button:focus-visible {
   content: "";
   position: absolute;
   bottom: -8px;
-  left: 24px;
+  left: 30px;
   width: 10px;
   height: 10px;
   background: var(--white);
@@ -325,11 +313,10 @@ button:focus-visible {
   transform: rotate(45deg);
 }
 
-/* 桌宠：没有 CLICK ME 或其他小字 */
 .pet-button {
   display: grid;
   place-items: center;
-  min-height: 84px;
+  min-height: 100px;
   padding: 0;
   background: transparent;
   border: 0;
@@ -342,7 +329,7 @@ button:focus-visible {
 
 .pet-button img {
   display: block;
-  width: 82px;
+  width: 120px;
   max-width: 100%;
   height: auto;
   image-rendering: pixelated;
@@ -352,17 +339,17 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .retro-button {
-  padding: 5px 6px;
+  padding: 6px 8px;
   color: #414642;
   background: #f4f3eb;
   border: 1px solid #a2a69e;
   border-right-color: #747a73;
   border-bottom-color: #747a73;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .retro-button:active {
@@ -370,7 +357,6 @@ button:focus-visible {
   border: 1px solid #747a73;
 }
 
-/* 底部状态栏 */
 .statusbar {
   flex-shrink: 0;
   min-height: 25px;
@@ -398,7 +384,9 @@ button:focus-visible {
     margin: 8px;
   }
 
-  .shell { grid-template-columns: minmax(0, 1fr) 76px; }
+  .shell {
+    grid-template-columns: minmax(0, 1fr) 112px;
+  }
 
   .brand {
     height: 105px;
@@ -413,18 +401,24 @@ button:focus-visible {
   .tabs { padding: 0 5px; gap: 2px; }
   .tab { padding: 9px 10px 7px; font-size: 11px; }
   .content { padding: 20px 15px; }
-  .sidebar { padding: 10px 4px; }
+  .sidebar { padding: 10px 6px; }
   .pet-button { font-size: 43px; }
-  .pet-button img { width: 58px; }
-  .speech { font-size: 9px; }
-  .side-label { font-size: 9px; }
+  .pet-button img { width: 82px; }
+  .speech { font-size: 9px; padding: 9px 5px; }
+  .retro-button { font-size: 9px; padding: 5px 4px; }
   .statusbar { font-size: 9px; }
 }
 
 @media (max-width: 380px) {
-  .shell { grid-template-columns: minmax(0, 1fr) 62px; }
+  .shell {
+    grid-template-columns: minmax(0, 1fr) 92px;
+  }
+
   .pet-tools { flex-direction: column; }
+  .pet-button img { width: 68px; }
 }
+
+/* 页面标签与桌宠互动 */
 </style>
 </head>
 
@@ -443,10 +437,9 @@ button:focus-visible {
   <div class="shell">
     <main class="main">
 
-      <!-- 标题图片区：这里不显示 Pics 文字 -->
       <header class="brand">
         <div class="logo-placeholder">
-          <!-- 以后上传标题图片后，使用下面这行：
+          <!-- 上传标题图片后，可取消下面这行的注释：
           <img src="images/my-title.png" alt="网站标题">
           -->
         </div>
@@ -514,17 +507,15 @@ button:focus-visible {
     </main>
 
     <aside class="sidebar">
-      <div class="side-label">MY LITTLE ROOM ✦</div>
-
       <div class="pet-area">
         <div class="speech" id="speech" aria-live="polite">
           你好呀！点我说话～
         </div>
 
-    <button class="pet-button" id="pet" aria-label="点击桌宠">
-  <img src="images/桌宠.png" alt="我的桌宠">
-    </button>
-        
+        <button class="pet-button" id="pet" aria-label="点击桌宠">
+          <img src="images/桌宠.png" alt="我的桌宠">
+        </button>
+
         <div class="pet-tools">
           <button class="retro-button" id="petHello">♡ 说话</button>
           <button class="retro-button" id="petPat">✦ 摸摸</button>
@@ -541,7 +532,6 @@ button:focus-visible {
 </div>
 
 <script>
-/* DIY：页面标签配置 */
 const pageConfig = [
   { id: "home", label: "主界面", icon: "⌂" },
   { id: "works", label: "我的作品", icon: "▣" },
@@ -587,7 +577,6 @@ function switchPage(id, label) {
 
 renderTabs();
 
-/* 实时时钟 */
 function updateClock() {
   const now = new Date();
 
@@ -603,13 +592,12 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-/* 桌宠对话 */
 const dialogue = [
   "欢迎来到我的个人网站，这里是存放我一切想法的地方。",
   "本网站持续更新中，由于编程能力可能拥有大量bug。",
   "我总觉得未来是个虚无缥缈的词汇。",
   "请不要相信此网站的任何话，因为这些不诚实的文字里大概包含了大量美化和臆想成分。",
-  "请不要用道德来要求我的言行举止。",
+  "请不要用道德来要求我的言行举止。"
 ];
 
 let dialogueIndex = 0;
