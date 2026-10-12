@@ -11,20 +11,15 @@
 :root {
   --blue: #6f91b5;
   --blue-dark: #4c6d90;
-  --blue-soft: #dce6ee;
   --paper: #f5f3eb;
   --white: #fffdf6;
-  --gray: #deded5;
-  --gray-dark: #898d86;
   --ink: #424744;
   --muted: #7d817b;
-  --green: #dce5d3;
-  --yellow: #f2e6bd;
-  --pink: #eadbd4;
   --border: #a4a79f;
 }
 
 * { box-sizing: border-box; }
+
 html, body { min-height: 100%; }
 
 body {
@@ -36,6 +31,7 @@ body {
 }
 
 button { font: inherit; cursor: pointer; }
+
 button:focus-visible {
   outline: 2px dashed var(--blue-dark);
   outline-offset: 3px;
@@ -55,6 +51,7 @@ button:focus-visible {
   box-shadow: 5px 5px 0 #aaa99f;
 }
 
+/* 顶部标题栏 */
 .titlebar {
   flex-shrink: 0;
   height: 32px;
@@ -66,7 +63,7 @@ button:focus-visible {
   color: white;
   background: var(--blue);
   border-bottom: 2px solid var(--blue-dark);
-  font-family: "Tahoma", "Microsoft YaHei", sans-serif;
+  font-family: Tahoma, "Microsoft YaHei", sans-serif;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: .03em;
@@ -78,7 +75,10 @@ button:focus-visible {
   white-space: nowrap;
 }
 
-.window-buttons { display: flex; gap: 3px; }
+.window-buttons {
+  display: flex;
+  gap: 3px;
+}
 
 .window-buttons span {
   display: grid;
@@ -93,7 +93,7 @@ button:focus-visible {
   font-size: 12px;
 }
 
-/* 主体：右侧桌宠栏加宽 */
+/* 主体布局：右侧桌宠栏加宽 */
 .shell {
   flex: 1;
   min-height: 0;
@@ -109,6 +109,7 @@ button:focus-visible {
   border-right: 3px solid #656b66;
 }
 
+/* 顶部图片区 */
 .brand {
   height: 132px;
   flex-shrink: 0;
@@ -136,6 +137,7 @@ button:focus-visible {
   image-rendering: pixelated;
 }
 
+/* 页面导航标签 */
 .tabs {
   flex-shrink: 0;
   min-height: 42px;
@@ -173,6 +175,7 @@ button:focus-visible {
   font-weight: bold;
 }
 
+/* 中央内容区 */
 .content {
   flex: 1;
   min-height: 0;
@@ -267,33 +270,38 @@ button:focus-visible {
 .entry p { margin-bottom: 0; }
 .entry-date { color: #858981; font-size: 11px; }
 
-/* 右侧桌宠栏：已删除 MY LITTLE ROOM */
+/* 右侧桌宠栏：充分利用高度和宽度 */
 .sidebar {
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 12px;
+  padding: 14px 12px;
   background: #eae9e1;
 }
 
+/* 气泡、桌宠、按钮均匀分布 */
 .pet-area {
   width: 100%;
-  margin-top: auto;
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 13px;
-  padding-bottom: 7px;
+  justify-content: space-evenly;
+  gap: 12px;
+  padding: 8px 0;
 }
 
 .speech {
   width: 100%;
+  flex-shrink: 0;
   position: relative;
-  padding: 12px 9px;
+  padding: 14px 10px;
   text-align: center;
-  line-height: 1.75;
-  font-size: 11px;
+  line-height: 1.8;
+  font-size: 12px;
   overflow-wrap: anywhere;
   background: var(--white);
   border: 2px solid #555d58;
@@ -313,37 +321,45 @@ button:focus-visible {
   transform: rotate(45deg);
 }
 
+/* 桌宠图片：电脑端最大160px */
 .pet-button {
   display: grid;
   place-items: center;
-  min-height: 100px;
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 150px;
   padding: 0;
   background: transparent;
   border: 0;
-  font-size: 56px;
   transition: transform .15s;
 }
 
 .pet-button:hover { transform: translateY(-4px); }
-.pet-button:active { transform: scale(.92); }
+.pet-button:active { transform: scale(.96); }
 
 .pet-button img {
   display: block;
-  width: 120px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 160px;
+  max-height: 42vh;
   height: auto;
+  object-fit: contain;
   image-rendering: pixelated;
 }
 
+/* 桌宠互动按钮 */
 .pet-tools {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .retro-button {
-  padding: 6px 8px;
+  width: 100%;
+  padding: 8px 5px;
   color: #414642;
   background: #f4f3eb;
   border: 1px solid #a2a69e;
@@ -357,6 +373,7 @@ button:focus-visible {
   border: 1px solid #747a73;
 }
 
+/* 底部状态栏 */
 .statusbar {
   flex-shrink: 0;
   min-height: 25px;
@@ -376,6 +393,7 @@ button:focus-visible {
   white-space: nowrap;
 }
 
+/* 手机端适配 */
 @media (max-width: 700px) {
   .desktop {
     width: calc(100vw - 16px);
@@ -401,24 +419,55 @@ button:focus-visible {
   .tabs { padding: 0 5px; gap: 2px; }
   .tab { padding: 9px 10px 7px; font-size: 11px; }
   .content { padding: 20px 15px; }
+
   .sidebar { padding: 10px 6px; }
-  .pet-button { font-size: 43px; }
-  .pet-button img { width: 82px; }
-  .speech { font-size: 9px; padding: 9px 5px; }
-  .retro-button { font-size: 9px; padding: 5px 4px; }
+  .pet-area { gap: 10px; }
+
+  .pet-button {
+    min-height: 100px;
+  }
+
+  .pet-button img {
+    width: 100%;
+    max-width: 96px;
+    max-height: 30vh;
+  }
+
+  .speech {
+    font-size: 10px;
+    padding: 9px 5px;
+  }
+
+  .pet-tools {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .retro-button {
+    padding: 6px 3px;
+    font-size: 9px;
+  }
+
   .statusbar { font-size: 9px; }
 }
 
+/* 更窄的手机 */
 @media (max-width: 380px) {
   .shell {
     grid-template-columns: minmax(0, 1fr) 92px;
   }
 
-  .pet-tools { flex-direction: column; }
-  .pet-button img { width: 68px; }
-}
+  .sidebar { padding: 8px 5px; }
 
-/* 页面标签与桌宠互动 */
+  .pet-button img {
+    max-width: 76px;
+  }
+
+  .speech {
+    font-size: 9px;
+    padding: 8px 4px;
+  }
+}
 </style>
 </head>
 
@@ -437,9 +486,10 @@ button:focus-visible {
   <div class="shell">
     <main class="main">
 
+      <!-- 顶部图片区：上传图片后可放在这里 -->
       <header class="brand">
         <div class="logo-placeholder">
-          <!-- 上传标题图片后，可取消下面这行的注释：
+          <!-- 取消下面两行的注释即可显示标题图片：
           <img src="images/my-title.png" alt="网站标题">
           -->
         </div>
@@ -506,8 +556,10 @@ button:focus-visible {
       </div>
     </main>
 
+    <!-- 右侧桌宠：已移除 MY LITTLE ROOM -->
     <aside class="sidebar">
       <div class="pet-area">
+
         <div class="speech" id="speech" aria-live="polite">
           你好呀！点我说话～
         </div>
@@ -520,6 +572,7 @@ button:focus-visible {
           <button class="retro-button" id="petHello">♡ 说话</button>
           <button class="retro-button" id="petPat">✦ 摸摸</button>
         </div>
+
       </div>
     </aside>
   </div>
@@ -532,6 +585,7 @@ button:focus-visible {
 </div>
 
 <script>
+/* 页面标签配置 */
 const pageConfig = [
   { id: "home", label: "主界面", icon: "⌂" },
   { id: "works", label: "我的作品", icon: "▣" },
@@ -577,6 +631,7 @@ function switchPage(id, label) {
 
 renderTabs();
 
+/* 实时时钟 */
 function updateClock() {
   const now = new Date();
 
@@ -592,6 +647,7 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
+/* 桌宠对话 */
 const dialogue = [
   "欢迎来到我的个人网站，这里是存放我一切想法的地方。",
   "本网站持续更新中，由于编程能力可能拥有大量bug。",
