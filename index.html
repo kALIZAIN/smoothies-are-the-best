@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pics - smoothies-are-the-best</title>
+<style>
+:root {
+  --blue:#527eae;
+  --blue-dark:#294a70;
+  --blue-light:#d9e7f5;
+  --paper:#f7f5ec;
+  --white:#fffef8;
+  --ink:#343b43;
+  --line:#7e8790;
+  --gray:#d9d9d2;
+  --green:#dce7d3;
+  --yellow:#fff1b9;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:#d6d5cc;
+  color:var(--ink);
+  font-family:"Courier New","Microsoft YaHei",monospace;
+  font-size:14px;
+}
+button { font:inherit; color:inherit; cursor:pointer; }
+button:focus-visible { outline:2px dashed var(--blue-dark); outline-offset:3px; }
+a { color:var(--blue-dark); }
+.desktop {
+  width:min(1500px,calc(100vw - 32px));
+  height:min(900px,calc(100dvh - 32px));
+  min-height:500px;
+  margin:16px auto;
+  border:3px solid #343a40;
+  outline:2px solid #fdfcf5;
+  box-shadow:5px 5px 0 #96958b;
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.titlebar {
+  height:38px;
+  flex-shrink:0;
+  background:var(--blue);
+  color:white;
+  border-bottom:3px solid var(--blue-dark);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 9px;
+  font-weight:bold;
+  letter-spacing:.04em;
+}
+.window-controls { display:flex; gap:4px; }
+.window-controls button {
+  width:25px;height:24px;
+  border:2px solid #fff;
+  border-right-color:#52647a;
+  border-bottom-color:#52647a;
+  background:#e9e8df;
+  font-weight:bold;
+  line-height:15px;
+}
+.shell {
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 120px;
+}
+.main {
+  min-width:0;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  border-right:3px solid var(--blue-dark);
+}
+.brand {
+  height:112px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border-bottom:2px solid var(--line);
+  margin:0 25px;
+}
+.brand h1 {
+  font-size:clamp(32px,4vw,52px);
+  margin:0;
+  letter-spacing:.12em;
+  font-weight:900;
+}
+.brand small { margin-top:8px; color:#68717b; font-size:11px; }
+.tabs {
+  display:flex;
+  align-items:end;
+  gap:3px;
+  padding:0 12px;
+  min-height:43px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+  flex-shrink:0;
+  border-bottom:3px solid var(--blue-dark);
+  background:#e8e7de;
+}
+.tab {
+  flex:0 0 auto;
+  min-width:78px;
+  padding:10px 13px 8px;
+  background:#eeeee7;
+  border:2px solid #9ca4aa;
+  border-bottom:0;
+  border-radius:9px 9px 0 0;
+  box-shadow:inset 2px 2px white;
+  white-space:nowrap;
+  font-size:12px;
+}
+.tab.active {
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue-dark);
+  font-weight:bold;
+  padding-top:13px;
+}
+.content {
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:26px clamp(18px,4vw,56px);
+  background:
+    radial-gradient(#b4b0a5 0.7px,transparent 0.7px),
+    var(--paper);
+  background-size:16px 16px;
+  scrollbar-color:#7c9ab9 #e7e4d9;
+}
+.page { display:none; }
+.page.active { display:block; }
+.page h2 {
+  font-size:23px;
+  margin:0 0 22px;
+  padding-bottom:12px;
+  border-bottom:2px solid #aeb3b4;
+}
+.page p { line-height:2; }
+.page img {
+  max-width:100%;
+  height:auto;
+  image-rendering:auto;
+}
+.pixel-placeholder {
+  border:2px dashed #a5a7a0;
+  min-height:150px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:#7d858a;
+  background:#efeee5;
+  padding:20px;
+  line-height:2;
+}
+.home-intro {
+  min-height:180px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px 10px;
+}
+.home-intro .symbol { font-size:40px; margin-bottom:15px; }
+.home-intro h2 {
+  border:0;
+  font-size:clamp(19px,2.5vw,28px);
+  margin:0 0 12px;
+}
+.home-intro p { margin:0; color:#737a7b; }
+.rule {
+  height:1px;
+  background:#aaaead;
+  margin:22px 0;
+}
+.entry {
+  border:1px solid #b4b5ad;
+  background:#fffef8;
+  padding:14px;
+  margin:12px 0;
+  box-shadow:3px 3px 0 #deddd4;
+}
+.entry h3 { margin:0 0 9px; font-size:15px; }
+.entry p { margin:0; color:#686e70; }
+.entry small { color:#858b8c; }
+.right {
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:12px 8px;
+  background:#eeece3;
+  position:relative;
+}
+.side-label {
+  writing-mode:vertical-rl;
+  font-size:11px;
+  letter-spacing:.15em;
+  color:#8a8c84;
+  margin:6px 0 auto;
+}
+.pet-area {
+  width:100%;
+  margin-top:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:13px;
+}
+.speech {
+  position:relative;
+  max-width:112px;
+  padding:10px 7px;
+  background:var(--white);
+  border:2px solid #3f4950;
+  box-shadow:3px 3px 0 #c4c3b8;
+  text-align:center;
+  font-size:11px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+.speech:after {
+  content:"";
+  position:absolute;
+  left:24px;
+  bottom:-9px;
+  width:12px;height:12px;
+  background:var(--white);
+  border-right:2px solid #3f4950;
+  border-bottom:2px solid #3f4950;
+  transform:rotate(45deg);
+}
+.pet-button {
+  border:0;
+  background:transparent;
+  padding:0;
+  font-size:64px;
+  line-height:1.3;
+  image-rendering:pixelated;
+  transition:transform .15s;
+}
+.pet-button:hover { transform:translateY(-4px); }
+.pet-button:active { transform:scale(.92); }
+.pet-button img {
+  width:88px;
+  height:auto;
+  image-rendering:pixelated;
+  display:block;
+}
+.pet-hint { font-size:9px; color:#82847d; text-align:center; }
+.pet-tools { display:flex; gap:5px; }
+.pet-tools button {
+  background:#fffef8;
+  border:1px solid #8e9699;
+  box-shadow:1px 1px #bbb;
+  font-size:11px;
+  padding:5px;
+}
+.statusbar {
+  min-height:24px;
+  border-top:2px solid #b0b3ad;
+  background:#e7e6dc;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:3px 10px;
+  color:#686e70;
+  font-size:10px;
+  flex-shrink:0;
+}
+.statusbar span:last-child { text-align:right; }
+@media(max-width:700px) {
+  .desktop {
+    width:calc(100vw - 16px);
+    height:calc(100dvh - 16px);
+    min-height:440px;
+    margin:8px;
+  }
+  .shell { grid-template-columns:minmax(0,1fr) 77px; }
+  .brand { height:88px; margin:0 12px; }
+  .brand h1 { font-size:clamp(23px,6vw,36px); }
+  .brand small { font-size:9px; }
+  .tabs { padding:0 5px; gap:2px; }
+  .tab { min-width:auto; padding:9px 10px 7px; font-size:11px; }
+  .content { padding:20px 15px; }
+  .right { padding:10px 4px; }
+  .speech { font-size:10px; }
+  .pet-button { font-size:47px; }
+  .pet-button img { width:60px; }
+  .side-label { font-size:9px; }
+  .statusbar { font-size:9px; }
+}
+@media(max-width:380px) {
+  .shell { grid-template-columns:minmax(0,1fr) 62px; }
+  .pet-tools { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+<div class="desktop">
+  <header class="titlebar">
+    <span>▣ Pics - smoothies-are-the-best</span>
+    <div class="window-controls">
+      <button aria-label="最小化" title="最小化">_</button>
+      <button aria-label="最大化" title="最大化">□</button>
+      <button id="closeButton" aria-label="关闭提示" title="关闭提示">×</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <main class="main">
+      <header class="brand">
+        <!-- 以后可用自己的标题图片替换 h1 -->
+        <h1 id="siteTitle">Pics</h1>
+        <small>✦ WELCOME TO MY LITTLE WORLD ✦</small>
+      </header>
+
+      <nav class="tabs" id="tabs" aria-label="网站页面"></nav>
+
+      <div class="content" id="content">
+        <section class="page active" id="page-home">
+          <div class="home-intro">
+            <div class="symbol">▧ ✦ ▧</div>
+            <h2>欢迎来到我的小小空间！</h2>
+            <p>这里可以放文字、图片、作品，以及所有你喜欢的东西。</p>
+          </div>
+          <div class="rule"></div>
+          <div class="pixel-placeholder">
+            <div>
+              <div style="font-size:34px">▧</div>
+              <strong>你的图片 / 插画展示区</strong>
+              <div>以后把自己的图片放在这里吧。</div>
+            </div>
+          </div>
+          <p>你好，访客。欢迎来到 smoothies-are-the-best 的个人网站。</p>
+          <p>点击上方标签，可以探索不同的页面。网站的内容和分类都可以由你自己决定。</p>
+        </section>
+
+        <section class="page" id="page-works">
+          <h2>我的作品</h2>
+          <p>这里是展示插画、摄影、手工、设计或其他作品的地方。</p>
+          <div class="entry">
+            <h3>作品 001 · 标题待定</h3>
+            <div class="pixel-placeholder">在这里放作品图片</div>
+            <p>作品介绍：以后替换成你自己的文字。</p>
+          </div>
+        </section>
+
+        <section class="page" id="page-diary">
+          <h2>日记</h2>
+          <div class="entry">
+            <small>2026 / 10 / 12</small>
+            <h3>第一篇日记</h3>
+            <p>今天开始搭建自己的个人网站。以后这里会留下许多故事。</p>
+          </div>
+        </section>
+
+        <section class="page" id="page-thoughts">
+          <h2>碎碎念</h2>
+          <div class="entry">
+            <h3>一些随手记下的话</h3>
+            <p>喜欢的东西、突然出现的灵感、今天听到的一句话……</p>
+          </div>
+        </section>
+
+        <section class="page" id="page-readme">
+          <h2>读我 / About</h2>
+          <p>欢迎来到我的个人主页！</p>
+          <p>这里可以介绍你自己、网站的制作过程，以及网站里藏着哪些小秘密。</p>
+        </section>
+      </div>
+    </main>
+
+    <aside class="right">
+      <div class="side-label">MY LITTLE ROOM ✦</div>
+      <div class="pet-area">
+        <div class="speech" id="speech" aria-live="polite">你好呀！点我说话～</div>
+        <!-- 以后把 emoji 换成自己的图片：
+             <img src="images/pet-idle.png" alt="我的桌宠"> -->
+        <button class="pet-button" id="pet" aria-label="点击桌宠">🐈</button>
+        <div class="pet-hint">CLICK ME!</div>
+        <div class="pet-tools">
+          <button id="petHello" title="和桌宠说话">♡ 说话</button>
+          <button id="petPat" title="摸摸桌宠">✦ 摸摸</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="statusbar">
+    <span id="status">就绪 · Welcome!</span>
+    <span id="clock">00:00</span>
+  </footer>
+</div>
+
+<script>
+// ====== DIY 区域 1：在这里添加、删除或修改标签 ======
+// id 必须唯一；label 是标签上显示的文字；icon 可以改成任何符号。
+const pageConfig = [
+  { id: "home", label: "主界面", icon: "⌂" },
+  { id: "works", label: "我的作品", icon: "▣" },
+  { id: "diary", label: "日记", icon: "▤" },
+  { id: "thoughts", label: "碎碎念", icon: "☺" },
+  { id: "readme", label: "读我", icon: "☆" }
+];
+
+// ====== 标签生成与页面切换 ======
+const tabs = document.getElementById("tabs");
+const pages = document.querySelectorAll(".page");
+const status = document.getElementById("status");
+
+function renderTabs() {
+  tabs.innerHTML = "";
+  pageConfig.forEach((item, index) => {
+    const button = document.createElement("button");
+    button.className = "tab" + (index === 0 ? " active" : "");
+    button.type = "button";
+    button.dataset.page = item.id;
+    button.textContent = item.icon + " " + item.label;
+    button.addEventListener("click", () => switchPage(item.id, item.label));
+    tabs.appendChild(button);
+  });
+}
+
+function switchPage(id, label) {
+  pages.forEach(page => {
+    page.classList.toggle("active", page.id === "page-" + id);
+  });
+  tabs.querySelectorAll(".tab").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === id);
+  });
+  document.getElementById("content").scrollTop = 0;
+  status.textContent = "当前页面 · " + label;
+}
+
+renderTabs();
+
+// ====== 时钟 ======
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    now.toLocaleDateString() + " " +
+    now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ====== 桌宠对话，可自行修改文案 ======
+const dialogue = [
+  "你好呀！点我说话～",
+  "今天也要开心一点！",
+  "你画的东西一定很可爱吧 ✦",
+  "这里以后会变得越来越漂亮！",
+  "记得休息和喝水哦。",
+  "喵喵！欢迎回来！"
+];
+let dialogueIndex = 0;
+
+function speak(text) {
+  document.getElementById("speech").textContent = text;
+  status.textContent = "桌宠说：" + text;
+}
+function nextDialogue() {
+  dialogueIndex = (dialogueIndex + 1) % dialogue.length;
+  speak(dialogue[dialogueIndex]);
+}
+document.getElementById("pet").addEventListener("click", nextDialogue);
+document.getElementById("petHello").addEventListener("click", nextDialogue);
+document.getElementById("petPat").addEventListener("click", () => {
+  speak("呼噜呼噜……最喜欢你啦！♡");
+  const pet = document.getElementById("pet");
+  pet.animate(
+    [{transform:"translateY(0)"},{transform:"translateY(-12px)"},{transform:"translateY(0)"}],
+    {duration:350}
+  );
+});
+document.getElementById("closeButton").addEventListener("click", () => {
+  speak("哼哼，这个按钮不能把我关掉！");
+});
+</script>
+</body>
+</html>
