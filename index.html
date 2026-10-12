@@ -605,12 +605,11 @@ setInterval(updateClock, 1000);
 
 /* 桌宠对话 */
 const dialogue = [
-  "你好呀！点我说话～",
-  "今天也要开心一点！",
-  "欢迎来到我的小房间！",
-  "这里以后会越来越漂亮！",
-  "记得休息和喝水哦。",
-  "喵喵！欢迎回来！"
+  "欢迎来到我的个人网站，这里是存放我一切想法的地方。",
+  "本网站持续更新中，由于编程能力可能拥有大量bug。",
+  "我总觉得未来是个虚无缥缈的词汇。",
+  "请不要相信此网站的任何话，因为这些不诚实的文字里大概包含了大量美化和臆想成分。",
+  "请不要用道德来要求我的言行举止。",
 ];
 
 let dialogueIndex = 0;
@@ -629,7 +628,7 @@ document.getElementById("pet").addEventListener("click", nextDialogue);
 document.getElementById("petHello").addEventListener("click", nextDialogue);
 
 document.getElementById("petPat").addEventListener("click", () => {
-  speak("呼噜呼噜……最喜欢你啦！♡");
+  speak("...");
 
   document.getElementById("pet").animate(
     [
