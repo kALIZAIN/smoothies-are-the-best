@@ -4,209 +4,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#6f91b5">
+<meta name="theme-color" content="#c0c0c0">
+
 <title>smoothies-are-the-best</title>
 
 <style>
+/* ========================================
+   90s RETRO PERSONAL HOMEPAGE
+   Windows 95 + Old Web + Pixel Desktop Pet
+======================================== */
+
 :root {
-  --blue: #6f91b5;
-  --blue-dark: #4c6d90;
-  --paper: #f5f3eb;
-  --white: #fffdf6;
-  --ink: #424744;
-  --muted: #7d817b;
-  --border: #a4a79f;
+  --win-gray: #c0c0c0;
+  --win-light: #ffffff;
+  --win-mid: #dfdfdf;
+  --win-dark: #808080;
+  --win-shadow: #404040;
+
+  --blue: #000080;
+  --blue-light: #1084d0;
+
+  --paper: #f2f0e6;
+  --paper-dark: #e2dfd3;
+  --ink: #252923;
+  --muted: #686b62;
+
+  --pixel-green: #728b70;
+  --pixel-pink: #d8b8b9;
+
+  --bevel:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080;
 }
 
-* { box-sizing: border-box; }
+/* 全局基础 */
 
-html, body { min-height: 100%; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
 
 body {
+  min-height: 100vh;
   margin: 0;
   color: var(--ink);
 
-  /* 整个网页的底层背景图 */
-  background-image: url("images/网站背景.png");
+  font-family:
+    "Fixedsys",
+    "Lucida Console",
+    "Courier New",
+    "Microsoft YaHei",
+    monospace;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  background-color: #d4d1c5;
+
+  /* 保留你自己的背景图 */
+  background-image:
+    linear-gradient(
+      rgba(222, 221, 207, 0.20),
+      rgba(222, 221, 207, 0.20)
+    ),
+    url("images/网站背景.png");
+
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
-  font-family: "Courier New", "Microsoft YaHei", monospace;
-  font-size: 13px;
 }
 
-button { font: inherit; cursor: pointer; }
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
 
 button:focus-visible {
-  outline: 2px dashed var(--blue-dark);
+  outline: 2px dotted var(--blue);
   outline-offset: 3px;
 }
 
+img {
+  image-rendering: auto;
+}
+
+/* ========================================
+   主窗口
+======================================== */
+
 .desktop {
-  width: min(1500px, calc(100vw - 36px));
-  height: min(920px, calc(100dvh - 36px));
+  width: min(1480px, calc(100vw - 40px));
+  height: min(900px, calc(100dvh - 40px));
   min-height: 490px;
-  margin: 18px auto;
+
+  margin: 20px auto;
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--paper);
-  border: 3px solid #484d4a;
-  outline: 2px solid #fffef7;
-  box-shadow: 5px 5px 0 #aaa99f;
+
+  background: var(--win-gray);
+
+  border: 2px solid;
+  border-color:
+    var(--win-light)
+    var(--win-shadow)
+    var(--win-shadow)
+    var(--win-light);
+
+  box-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.22),
+    5px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-/* 顶部标题栏 */
+/* ========================================
+   标题栏：经典 Windows 95
+======================================== */
+
 .titlebar {
   flex-shrink: 0;
-  height: 32px;
+  min-height: 31px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 0 10px;
-  color: white;
+
+  padding: 3px 5px;
+
+  color: #ffffff;
   background: var(--blue);
-  border-bottom: 2px solid var(--blue-dark);
-  font-family: Tahoma, "Microsoft YaHei", sans-serif;
+
+  font-family:
+    "Tahoma",
+    "Microsoft YaHei",
+    sans-serif;
+
   font-size: 12px;
   font-weight: bold;
-  letter-spacing: .03em;
+  letter-spacing: 0;
 }
 
 .titlebar-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.titlebar-name::before {
+  content: "▣";
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
 .window-buttons {
   display: flex;
   gap: 3px;
+  flex-shrink: 0;
 }
 
 .window-buttons span {
+  width: 19px;
+  height: 19px;
+
   display: grid;
   place-items: center;
-  width: 19px;
-  height: 18px;
-  color: #3d494f;
-  background: #f2f1e9;
-  border: 1px solid white;
-  border-right-color: #727873;
-  border-bottom-color: #727873;
+
+  color: #111111;
+  background: var(--win-gray);
+
+  border: 2px solid;
+  border-color:
+    var(--win-light)
+    var(--win-shadow)
+    var(--win-shadow)
+    var(--win-light);
+
+  font-family: Arial, sans-serif;
   font-size: 12px;
+  line-height: 1;
 }
 
-/* 主体布局：右侧桌宠栏加宽 */
+/* ========================================
+   主体布局
+======================================== */
+
 .shell {
   flex: 1;
   min-height: 0;
+
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 190px;
+  grid-template-columns: minmax(0, 1fr) 205px;
 }
 
 .main {
-  min-width: 0;
-  min-height: 0;
   display: flex;
   flex-direction: column;
-  border-right: 3px solid #656b66;
+
+  min-width: 0;
+  min-height: 0;
+
+  border-right: 2px solid var(--win-dark);
 }
 
-/* 顶部图片区 */
+/* ========================================
+   顶部品牌区
+======================================== */
+
 .brand {
-  height: 132px;
+  height: 116px;
   flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 28px;
-  border-bottom: 2px solid var(--border);
+
+  margin: 0 20px;
+
+  border-bottom: 1px dashed #a5a397;
 }
 
 .logo-placeholder {
-  width: min(400px, 80%);
+  width: min(420px, 90%);
   height: 88px;
+
   display: grid;
   place-items: center;
 }
 
 .logo-placeholder img {
   display: block;
+
   max-width: 100%;
   max-height: 100%;
+
   width: auto;
   height: auto;
+
   object-fit: contain;
   image-rendering: pixelated;
 }
 
-/* 页面导航标签 */
+/* 如果暂时没有标题图片，显示复古文字 Logo */
+
+.logo-placeholder:empty::before {
+  content: "★ MY LITTLE WEB ★";
+
+  color: var(--blue);
+  text-align: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: clamp(15px, 2vw, 23px);
+  font-weight: bold;
+  letter-spacing: 0.08em;
+
+  text-shadow: 2px 2px 0 #bcb9ad;
+}
+
+/* ========================================
+   导航标签
+======================================== */
+
 .tabs {
   flex-shrink: 0;
-  min-height: 42px;
+  min-height: 40px;
+
   display: flex;
   align-items: end;
   gap: 3px;
-  padding: 0 12px;
+
+  padding: 4px 8px 0;
+
   overflow-x: auto;
   overflow-y: hidden;
-  background: #e6e5dd;
-  border-bottom: 3px solid #656b66;
+
+  background: var(--win-gray);
+
+  border-bottom: 2px solid var(--win-shadow);
+
   scrollbar-width: thin;
-  scrollbar-color: #9ba8b1 #e6e5dd;
+  scrollbar-color: var(--win-dark) var(--win-gray);
 }
 
 .tab {
   flex-shrink: 0;
-  padding: 10px 14px 8px;
-  color: #414642;
-  background: #eeede5;
-  border: 1px solid #a3a69e;
+
+  padding: 7px 13px 6px;
+
+  color: #202020;
+  background: var(--win-gray);
+
+  border: 2px solid;
+  border-color:
+    var(--win-light)
+    var(--win-shadow)
+    var(--win-shadow)
+    var(--win-light);
+
   border-bottom: 0;
-  border-radius: 5px 5px 0 0;
-  box-shadow: inset 1px 1px white;
+
   white-space: nowrap;
   font-size: 12px;
+}
+
+.tab:hover {
+  background: #d4d4d4;
+}
+
+.tab:active {
+  border-color:
+    var(--win-shadow)
+    var(--win-light)
+    var(--win-light)
+    var(--win-shadow);
 }
 
 .tab.active {
   position: relative;
   top: 1px;
-  color: white;
-  background: var(--blue);
-  border-color: var(--blue-dark);
+  z-index: 1;
+
+  color: var(--blue);
+  background: var(--paper);
+
+  border-color:
+    var(--win-light)
+    var(--win-dark)
+    var(--paper)
+    var(--win-light);
+
+  border-bottom: 2px solid var(--paper);
+
   font-weight: bold;
 }
 
-/* 中央内容区 */
+/* ========================================
+   内容区
+======================================== */
+
 .content {
   flex: 1;
+
   min-height: 0;
   min-width: 0;
+
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 30px clamp(18px, 4vw, 54px);
-  background: var(--paper);
-  scrollbar-color: #a1adb6 #e9e7df;
+
+  padding: 27px clamp(16px, 3.8vw, 48px);
+
+  background-color: var(--paper);
+
+  /* 很轻的复古纸张点阵 */
+  background-image:
+    radial-gradient(
+      rgba(75, 74, 63, 0.10) 0.65px,
+      transparent 0.65px
+    );
+
+  background-size: 5px 5px;
+
+  scrollbar-color: var(--win-dark) var(--win-gray);
   scrollbar-width: thin;
 }
 
-.page { display: none; }
-.page.active { display: block; }
-
-.page h2 {
-  margin: 0 0 20px;
-  padding: 0 0 12px;
-  font-size: 21px;
-  border-bottom: 2px solid #b7b8b0;
+.page {
+  display: none;
 }
 
-.page h3 { font-size: 14px; }
-.page p { line-height: 2; }
+.page.active {
+  display: block;
+}
+
+.page h2 {
+  margin: 0 0 19px;
+  padding: 0 0 10px;
+
+  color: var(--blue);
+
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+
+  border-bottom: 2px dashed #aaa99e;
+}
+
+.page h3 {
+  font-size: 14px;
+  color: #41483d;
+}
+
+.page p {
+  line-height: 2;
+}
 
 .page img {
   display: block;
@@ -214,26 +417,40 @@ button:focus-visible {
   height: auto;
 }
 
+/* ========================================
+   首页欢迎区
+======================================== */
+
 .home-welcome {
-  min-height: 190px;
+  min-height: 200px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+
   padding: 18px;
+  text-align: center;
 }
 
 .home-welcome .decoration {
+  margin-bottom: 13px;
+
+  color: var(--pixel-green);
+
   font-size: 25px;
-  letter-spacing: .35em;
-  margin-bottom: 16px;
-  color: var(--blue-dark);
+  letter-spacing: 0.3em;
+
+  text-shadow: 2px 2px 0 #d2d0c2;
 }
 
 .home-welcome h2 {
-  border: 0;
   margin: 0 0 12px;
+
+  color: var(--blue);
+
+  border: 0;
+
   font-size: clamp(18px, 2.5vw, 26px);
 }
 
@@ -243,177 +460,309 @@ button:focus-visible {
 }
 
 .divider {
-  height: 1px;
-  margin: 20px 0;
-  background: #b7b8b0;
+  height: 0;
+  margin: 19px 0;
+
+  border-top: 1px dashed #a5a397;
 }
+
+/* ========================================
+   占位内容框
+======================================== */
 
 .placeholder {
   min-height: 180px;
+
   display: grid;
   place-items: center;
+
   padding: 20px;
   text-align: center;
-  color: #85877f;
+
+  color: #777a70;
   line-height: 2;
-  background: #eeede5;
-  border: 2px dashed #b1b2a9;
+
+  background: rgba(224, 222, 211, 0.60);
+
+  border: 2px dashed #a5a397;
 }
 
 .placeholder-icon {
+  color: var(--pixel-green);
   font-size: 30px;
-  color: var(--blue-dark);
 }
+
+/* ========================================
+   日记 / 作品卡片
+======================================== */
 
 .entry {
   margin: 14px 0;
   padding: 16px;
-  background: var(--white);
-  border: 1px solid #b8b9b0;
-  box-shadow: 3px 3px 0 #deddd4;
+
+  background: rgba(255, 253, 246, 0.88);
+
+  border: 1px solid #aaa99e;
+
+  box-shadow: 3px 3px 0 #d2d0c5;
 }
 
-.entry h3 { margin: 0 0 10px; }
-.entry p { margin-bottom: 0; }
-.entry-date { color: #858981; font-size: 11px; }
+.entry h3 {
+  margin: 0 0 10px;
+  color: var(--blue);
+}
 
-/* 右侧桌宠栏：充分利用高度和宽度 */
+.entry p {
+  margin-bottom: 0;
+}
+
+.entry-date {
+  color: var(--pixel-green);
+
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+/* ========================================
+   右侧桌宠房间
+======================================== */
+
 .sidebar {
   min-width: 0;
   min-height: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 14px 12px;
-  background: transparent;
-}
 
-/* 气泡、桌宠、按钮均匀分布 */
+  padding: 10px;
+
+  background: #c5c3b8;
+}
 
 .pet-area {
   width: 100%;
   height: 100%;
   min-height: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  gap: 12px;
-  padding: 40px 12px;
 
-  /* 新增：房间背景 */
-  background-image: url("images/pet-bg.png");
-  background-size: contain;
+  gap: 12px;
+  padding: 24px 10px;
+
+  background-color: #dedccf;
+
+  /* 桌宠房间背景 */
+  background-image:
+    linear-gradient(
+      rgba(225, 223, 211, 0.15),
+      rgba(225, 223, 211, 0.15)
+    ),
+    url("images/pet-bg.png");
+
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  border: 2px solid;
+  border-color:
+    #a4a397
+    #f9f8ed
+    #f9f8ed
+    #a4a397;
 }
 
+/* 对话气泡 */
+
 .speech {
+  position: relative;
   width: 100%;
   flex-shrink: 0;
-  position: relative;
-  padding: 14px 10px;
+
+  padding: 12px 8px;
+
   text-align: center;
   line-height: 1.8;
+
   font-size: 12px;
   overflow-wrap: anywhere;
-  background: var(--white);
-  border: 2px solid #555d58;
-  box-shadow: 3px 3px 0 #c8c7bd;
+
+  background: #fffdf4;
+
+  border: 1px solid #74776e;
+
+  box-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.13);
 }
 
 .speech::after {
   content: "";
+
   position: absolute;
-  bottom: -8px;
-  left: 30px;
+  bottom: -7px;
+  left: 27px;
+
   width: 10px;
   height: 10px;
-  background: var(--white);
-  border-right: 2px solid #555d58;
-  border-bottom: 2px solid #555d58;
+
+  background: #fffdf4;
+
+  border-right: 1px solid #74776e;
+  border-bottom: 1px solid #74776e;
+
   transform: rotate(45deg);
 }
 
-/* 桌宠图片：电脑端最大160px */
+/* 桌宠 */
+
 .pet-button {
   display: grid;
   place-items: center;
+
   flex: 0 1 auto;
+
   width: 100%;
-  min-height: 150px;
+  min-height: 140px;
+
   padding: 0;
+
   background: transparent;
   border: 0;
-  transition: transform .15s;
+
+  transition: transform 0.15s;
 }
 
-.pet-button:hover { transform: translateY(-4px); }
-.pet-button:active { transform: scale(.96); }
+.pet-button:hover {
+  transform: translateY(-4px);
+}
 
+.pet-button:active {
+  transform: scale(0.96);
+}
 
 .pet-button img {
   display: block;
+
   width: 160px;
   max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  image-rendering: auto;
-}
+  max-height: 35vh;
 
+  height: auto;
+
+  object-fit: contain;
+  image-rendering: pixelated;
 }
 
 /* 桌宠互动按钮 */
+
 .pet-tools {
   display: flex;
   flex-direction: column;
+
   width: 100%;
   flex-shrink: 0;
-  justify-content: center;
-  gap: 8px;
+
+  gap: 7px;
 }
 
 .retro-button {
   width: 100%;
-  padding: 8px 5px;
-  color: #414642;
-  background: #f4f3eb;
-  border: 1px solid #a2a69e;
-  border-right-color: #747a73;
-  border-bottom-color: #747a73;
+
+  padding: 7px 5px;
+
+  color: #252923;
+  background: var(--win-gray);
+
+  border: 2px solid;
+  border-color:
+    var(--win-light)
+    var(--win-shadow)
+    var(--win-shadow)
+    var(--win-light);
+
   font-size: 11px;
 }
 
-.retro-button:active {
-  background: #dedfd7;
-  border: 1px solid #747a73;
+.retro-button:hover {
+  background: #d5d5d5;
 }
 
-/* 底部状态栏 */
+.retro-button:active {
+  border-color:
+    var(--win-shadow)
+    var(--win-light)
+    var(--win-light)
+    var(--win-shadow);
+
+  padding-top: 8px;
+  padding-bottom: 6px;
+}
+
+/* ========================================
+   底部状态栏
+======================================== */
+
 .statusbar {
   flex-shrink: 0;
-  min-height: 25px;
+  min-height: 27px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
   gap: 8px;
-  padding: 4px 10px;
-  color: #666d68;
-  background: #e5e4db;
-  border-top: 2px solid #b3b5ad;
+  padding: 4px 8px;
+
+  color: #40443f;
+  background: var(--win-gray);
+
+  border-top: 2px solid var(--win-light);
+
   font-size: 10px;
 }
 
+.statusbar span {
+  min-width: 0;
+}
+
+.statusbar span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .statusbar span:last-child {
+  flex-shrink: 0;
   text-align: right;
   white-space: nowrap;
 }
 
-/* 手机端适配 */
+/* ========================================
+   小型复古装饰
+======================================== */
+
+::selection {
+  color: #ffffff;
+  background: var(--blue);
+}
+
+/* ========================================
+   手机适配
+======================================== */
+
 @media (max-width: 700px) {
+  body {
+    background-attachment: scroll;
+  }
+
   .desktop {
     width: calc(100vw - 16px);
     height: calc(100dvh - 16px);
+
     min-height: 430px;
     margin: 8px;
   }
@@ -423,21 +772,37 @@ button:focus-visible {
   }
 
   .brand {
-    height: 105px;
-    margin: 0 12px;
+    height: 95px;
+    margin: 0 10px;
   }
 
   .logo-placeholder {
-    width: 90%;
-    height: 75px;
+    width: 95%;
+    height: 70px;
   }
 
-  .tabs { padding: 0 5px; gap: 2px; }
-  .tab { padding: 9px 10px 7px; font-size: 11px; }
-  .content { padding: 20px 15px; }
+  .tabs {
+    padding: 4px 5px 0;
+    gap: 2px;
+  }
 
-  .sidebar { padding: 10px 6px; }
-  .pet-area { gap: 10px; }
+  .tab {
+    padding: 7px 9px 6px;
+    font-size: 11px;
+  }
+
+  .content {
+    padding: 19px 14px;
+  }
+
+  .sidebar {
+    padding: 6px;
+  }
+
+  .pet-area {
+    gap: 9px;
+    padding: 14px 5px;
+  }
 
   .pet-button {
     min-height: 100px;
@@ -446,52 +811,86 @@ button:focus-visible {
   .pet-button img {
     width: 100%;
     max-width: 96px;
-    max-height: 30vh;
+    max-height: 28vh;
   }
 
   .speech {
+    padding: 8px 4px;
     font-size: 10px;
-    padding: 9px 5px;
   }
 
   .pet-tools {
-    flex-direction: column;
     gap: 6px;
   }
 
   .retro-button {
-    padding: 6px 3px;
+    padding: 6px 2px;
     font-size: 9px;
   }
 
-  .statusbar { font-size: 9px; }
+  .statusbar {
+    font-size: 9px;
+  }
+
+  .page h2 {
+    font-size: 19px;
+  }
 }
 
 /* 更窄的手机 */
+
 @media (max-width: 380px) {
   .shell {
     grid-template-columns: minmax(0, 1fr) 92px;
   }
 
-  .sidebar { padding: 8px 5px; }
+  .sidebar {
+    padding: 5px;
+  }
+
+  .pet-area {
+    padding: 10px 4px;
+  }
 
   .pet-button img {
     max-width: 76px;
   }
 
   .speech {
+    padding: 7px 3px;
     font-size: 9px;
-    padding: 8px 4px;
+  }
+
+  .tab {
+    padding: 6px 8px;
+  }
+
+  .statusbar {
+    font-size: 8px;
+  }
+}
+
+/* 减少动态效果偏好 */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 </style>
 </head>
 
 <body>
+
 <div class="desktop">
 
+  <!-- 窗口标题栏 -->
   <header class="titlebar">
     <span class="titlebar-name">smoothies-are-the-best</span>
+
     <div class="window-buttons" aria-hidden="true">
       <span>_</span>
       <span>□</span>
@@ -500,13 +899,18 @@ button:focus-visible {
   </header>
 
   <div class="shell">
+
+    <!-- 主页面 -->
     <main class="main">
 
-      <!-- 顶部图片区：上传图片后可放在这里 -->
       <header class="brand">
         <div class="logo-placeholder">
-          <!-- 取消下面两行的注释即可显示标题图片：
+          <!--
+          如果有自己的标题图片，可以使用：
+
           <img src="images/my-title.png" alt="网站标题">
+
+          放入图片后，默认的文字 Logo 就不会显示。
           -->
         </div>
       </header>
@@ -515,11 +919,17 @@ button:focus-visible {
 
       <div class="content" id="content">
 
+        <!-- 首页 -->
         <section class="page active" id="page-home">
+
           <div class="home-welcome">
             <div class="decoration">✦ ▧ ✦</div>
+
             <h2>欢迎来到我的小小空间！</h2>
-            <p>这里可以放文字、图片和所有你喜欢的东西。</p>
+
+            <p>
+              welcome to my little corner of the internet ★
+            </p>
           </div>
 
           <div class="divider"></div>
@@ -527,72 +937,157 @@ button:focus-visible {
           <div class="placeholder">
             <div>
               <div class="placeholder-icon">▧</div>
+
               <strong>中央图片 / 内容展示区</strong>
-              <div>以后可以替换成自己的插画、照片或文字。</div>
+
+              <div>
+                这里是我的小小互联网角落。
+              </div>
+
+              <div>
+                BEST VIEWED WITH CURIOSITY ☆
+              </div>
             </div>
           </div>
 
           <p>你好，访客。欢迎来到我的个人网站。</p>
+
           <p>点击上方标签，探索这个小小的互联网角落。</p>
+
+          <p style="color:#728b70;font-size:11px;">
+            ✧ handmade website · under construction ✧
+          </p>
+
         </section>
 
+        <!-- 作品 -->
         <section class="page" id="page-works">
+
           <h2>我的作品</h2>
-          <p>这里可以展示绘画、摄影、手工、设计或其他创作。</p>
+
+          <p>
+            这里可以展示绘画、摄影、手工、设计或其他创作。
+          </p>
+
           <div class="entry">
             <h3>作品 001</h3>
-            <div class="placeholder">在这里放自己的作品图片</div>
+
+            <div class="placeholder">
+              <div>
+                <div class="placeholder-icon">▧</div>
+                在这里放自己的作品图片
+              </div>
+            </div>
+
             <p>作品介绍：替换成你自己的文字。</p>
           </div>
+
         </section>
 
+        <!-- 日记 -->
         <section class="page" id="page-diary">
+
           <h2>日记</h2>
+
           <div class="entry">
-            <div class="entry-date">MY DIARY</div>
+            <div class="entry-date">MY DIARY / LOG 001</div>
+
             <h3>第一篇日记</h3>
+
             <p>今天开始搭建自己的个人网站。</p>
           </div>
+
         </section>
 
+        <!-- 碎碎念 -->
         <section class="page" id="page-thoughts">
+
           <h2>碎碎念</h2>
+
           <div class="entry">
             <h3>随手记下的话</h3>
-            <p>灵感、最近喜欢的东西、突然想到的小事……</p>
+
+            <p>
+              灵感、最近喜欢的东西、突然想到的小事……
+            </p>
           </div>
+
         </section>
 
+        <!-- 关于 -->
         <section class="page" id="page-readme">
+
           <h2>读我 / About</h2>
+
           <p>欢迎来到我的个人主页！</p>
-          <p>这里可以介绍你自己、网站的制作过程，以及你想分享的内容。</p>
+
+          <p>
+            这里可以介绍你自己、网站的制作过程，
+            以及你想分享的内容。
+          </p>
+
+          <div class="entry">
+            <h3>ABOUT THIS SITE</h3>
+
+            <p>
+              Made with curiosity, a little nostalgia,
+              and too much time on the internet.
+            </p>
+
+            <p style="color:#728b70;">
+              Thanks for visiting! ☆
+            </p>
+          </div>
+
         </section>
 
       </div>
     </main>
 
-    <!-- 右侧桌宠：已移除 MY LITTLE ROOM -->
+    <!-- 右侧桌宠 -->
     <aside class="sidebar">
+
       <div class="pet-area">
 
         <div class="speech" id="speech" aria-live="polite">
           你好呀！点我说话～
         </div>
 
-        <button class="pet-button" id="pet" aria-label="点击桌宠">
+        <button
+          class="pet-button"
+          id="pet"
+          type="button"
+          aria-label="点击桌宠"
+        >
           <img src="images/桌宠.png" alt="我的桌宠">
         </button>
 
         <div class="pet-tools">
-          <button class="retro-button" id="petHello">♡ 说话</button>
-          <button class="retro-button" id="petPat">✦ 摸摸</button>
+
+          <button
+            class="retro-button"
+            id="petHello"
+            type="button"
+          >
+            ♡ 说话
+          </button>
+
+          <button
+            class="retro-button"
+            id="petPat"
+            type="button"
+          >
+            ✦ 摸摸
+          </button>
+
         </div>
 
       </div>
     </aside>
+
   </div>
 
+  <!-- 底部状态栏 -->
   <footer class="statusbar">
     <span id="status">就绪 · Welcome!</span>
     <span id="clock">正在读取时间…</span>
@@ -601,7 +1096,10 @@ button:focus-visible {
 </div>
 
 <script>
-/* 页面标签配置 */
+/* ========================================
+   页面导航
+======================================== */
+
 const pageConfig = [
   { id: "home", label: "主界面", icon: "⌂" },
   { id: "works", label: "我的作品", icon: "▣" },
@@ -619,6 +1117,7 @@ function renderTabs() {
 
   pageConfig.forEach((item, index) => {
     const button = document.createElement("button");
+
     button.type = "button";
     button.className = "tab" + (index === 0 ? " active" : "");
     button.dataset.page = item.id;
@@ -634,20 +1133,30 @@ function renderTabs() {
 
 function switchPage(id, label) {
   pages.forEach(page => {
-    page.classList.toggle("active", page.id === "page-" + id);
+    page.classList.toggle(
+      "active",
+      page.id === "page-" + id
+    );
   });
 
   tabs.querySelectorAll(".tab").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === id);
+    button.classList.toggle(
+      "active",
+      button.dataset.page === id
+    );
   });
 
   document.getElementById("content").scrollTop = 0;
+
   status.textContent = "当前页面 · " + label;
 }
 
 renderTabs();
 
-/* 实时时钟 */
+/* ========================================
+   实时时钟
+======================================== */
+
 function updateClock() {
   const now = new Date();
 
@@ -663,7 +1172,10 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-/* 桌宠对话 */
+/* ========================================
+   桌宠对话
+======================================== */
+
 const dialogue = [
   "欢迎来到我的个人网站，这里是存放我一切想法的地方。",
   "本网站持续更新中，由于编程能力可能拥有大量bug。",
@@ -684,21 +1196,36 @@ function nextDialogue() {
   speak(dialogue[dialogueIndex]);
 }
 
-document.getElementById("pet").addEventListener("click", nextDialogue);
-document.getElementById("petHello").addEventListener("click", nextDialogue);
+document.getElementById("pet").addEventListener(
+  "click",
+  nextDialogue
+);
+
+document.getElementById("petHello").addEventListener(
+  "click",
+  nextDialogue
+);
 
 document.getElementById("petPat").addEventListener("click", () => {
-  speak("...");
+  speak("……嗯？");
 
-  document.getElementById("pet").animate(
-    [
-      { transform: "translateY(0)" },
-      { transform: "translateY(-12px)" },
-      { transform: "translateY(0)" }
-    ],
-    { duration: 350 }
-  );
+  const pet = document.getElementById("pet");
+
+  if (typeof pet.animate === "function") {
+    pet.animate(
+      [
+        { transform: "translateY(0)" },
+        { transform: "translateY(-12px)" },
+        { transform: "translateY(0)" }
+      ],
+      {
+        duration: 350,
+        easing: "steps(3, end)"
+      }
+    );
+  }
 });
 </script>
+
 </body>
 </html>
